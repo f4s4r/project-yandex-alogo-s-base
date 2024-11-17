@@ -1,9 +1,10 @@
+import random as rnd
 def quick_sort(array):
     cur_len = len(array)
     if cur_len < 2:
         return array
     print(array)
-    p = array[0]
+    p = array[rnd.randint(0, cur_len - 1)]
     lesser = [array[x] for x in range(cur_len) if array[x] < p]
     greater = [array[x] for x in range(cur_len) if array[x] > p]
     coefficient = 1 if len(lesser) + len(greater) == cur_len else cur_len - (len(lesser) + len(greater))
