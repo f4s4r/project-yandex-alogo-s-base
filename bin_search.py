@@ -25,4 +25,3 @@ def bin_s(arr, num):
             cur_len = len(left)
     else:
         return res
-print(bin_s(rand_list, 1))
