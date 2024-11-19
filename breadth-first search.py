@@ -46,6 +46,24 @@ class Graph:
                     visited.add(neighbor)
 
         return -1
+    
+
+    def DSF(self, start, target):
+        queue = Queue()
+        visited = set()
+        queue.put((start, 0))
+        visited.add(start)
+        level = 1
+
+        while queue:
+            current_node, level = queue.get()
+
+            if current_node == target:
+                return level
+            neighbours = self.getNeighbour(current_node)
+            for i in range(len(neighbours)):
+                queue.put((neighbours[i], level + 1))
+                visited.add(neighbours[i])
 
 
 friends = Graph()
@@ -59,4 +77,15 @@ friends.add("Tom", "")
 friends.add("Jonny", "")
 
 distance = friends.BSF("me", "Tom")
-print(f"Расстояние от 'me' до 'Tom': {distance}")
+#print(f"Расстояние от 'me' до 'Tom': {distance}")
+
+numbers = Graph()
+numbers.add('1', ['2', '7'])
+numbers.add('2', ['3', '4'])
+numbers.add('3', '')
+numbers.add('4', ['5', '6'])
+numbers.add('7', ['8', '9'])
+numbers.add('8', '')
+numbers.add('9', '')
+distanceD = numbers.DSF('1', '9')
+print(distanceD)
