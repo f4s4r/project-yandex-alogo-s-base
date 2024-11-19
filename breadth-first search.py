@@ -48,22 +48,16 @@ class Graph:
         return -1
     
 
-    def DSF(self, start, target):
-        queue = Queue()
-        visited = set()
-        queue.put((start, 0))
-        visited.add(start)
-        level = 1
+    def DSF(self, node, target, levels=0):
 
-        while queue:
-            current_node, level = queue.get()
-
-            if current_node == target:
-                return level
-            neighbours = self.getNeighbour(current_node)
-            for i in range(len(neighbours)):
-                queue.put((neighbours[i], level + 1))
-                visited.add(neighbours[i])
+        if node == target:
+            return levels
+        
+        neighbours = self.getNeighbour(node)
+        for i in range(len(neighbours) if neighbours != '' else 0):
+            res = self.DSF(neighbours[i], target, levels=levels + 1)
+            if res is not None:
+                return res
 
 
 friends = Graph()
